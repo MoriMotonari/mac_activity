@@ -10,9 +10,9 @@ class AppSnapshot:
         if not self.has_file_url():
             raise InvalidURLError("URL doesn't start with 'file:///'")
 
-    @staticmethod
-    def from_NSApp(ns_app):
-        return AppSnapshot(str(ns_app.localizedName()), str(ns_app.bundleURL()), ns_app.isActive())
+    @classmethod
+    def from_NSApp(cls, ns_app):
+        return cls(str(ns_app.localizedName()), str(ns_app.bundleURL()), ns_app.isActive())
 
     def is_finder(self):
         return self.url == "file:///System/Library/CoreServices/Finder.app/"
